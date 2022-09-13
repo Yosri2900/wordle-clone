@@ -7,6 +7,12 @@
 </head>
 <style>
 /*Styling modal message*/
+    * {
+        margin: 2px;
+        padding: 0%;
+        justify-content: center;
+        align-items: center;
+    }
     #modal {
         width: 500px;
         height: 225px;
@@ -16,7 +22,7 @@
         text-align: center;
         background-color: white;
         position: absolute;
-        top: 50%;
+        top: 5%;
         left: 50%;
         right: 50%;
         max-width: 80%;
@@ -25,8 +31,8 @@
         border-style: solid;
         border-width: thick;
         border-radius: 10px;
-        display: none;
         transform: translateX(-50%);
+        display: none;
     }
 
     #overlay {
@@ -62,7 +68,6 @@
         justify-content: center;
         align-items: center;
         grid-gap: 10px;
-        /* transform: translateX(-50%); */
     }
 /*----------------------------------------------------
     Styling the tiles
@@ -108,6 +113,10 @@
         height: 100vh;
         flex-direction: column;
         margin: 0px 10px;
+        position: absolute;
+        top: 750px;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .keyboard-container > .keyboard-wrap {
@@ -120,8 +129,6 @@
 
     .row {
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
     }
 
     .keys {
