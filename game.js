@@ -416,10 +416,12 @@ function checkTiles(inputArr) {
     tiles[start].setAttribute("class", tileClass);
   }
 
-  if (currentGuess == SOLUTION) playAgain();
+  if (currentGuess == SOLUTION) {
+    playAgain();
+    return;
+  }
   guessCount++;
   currentGuess = "";
-
   if (guessCount == 6) gameOver();
 }
 
@@ -445,18 +447,15 @@ const handleTyping = (event) => {
 };
 
 function gameOver() {
-  modal.style.display = "block";
-  overlay.style.opacity = "2";
-  clearInterval();
-  let header = document
-    .querySelector("#modal")
-    .querySelector(".modal-header")
-    .getElementsByTagName("h2")[0];
-  timer.innerText = `${minutes} : ${seconds} mins`;
   clearInterval(myTimer);
-  header.innerText = "Game Over :(";
-  let text = document.querySelector("#modal").getElementsByTagName("p")[0];
-  text.innerText = "Click on 'X' to play again.";
+  setInterval(() => {
+    modal.style.display = "block";
+    overlay.style.opacity = "2";
+    clearInterval();
+    header.innerText = "Game Over :(";
+    let text = document.querySelector("#modal").getElementsByTagName("p")[0];
+    text.innerText = "Click on 'X' to play again.";
+  }, 450);
   resetBoard();
 }
 
