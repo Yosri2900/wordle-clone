@@ -1,0 +1,279 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle</title>
+</head>
+<style>
+
+    #modal {
+        width: 500px;
+        height: 225px;
+        border: 1px solid #333;
+        box-sizing: border-box;
+        padding: 20px;
+        text-align: center;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        right: 50%;
+        transform: translate(-50px, -50px);
+        max-width: 80%;
+        z-index: 10;
+        border-color: black;
+        border-style: solid;
+        border-width: thick;
+        border-radius: 10px;
+        display: none;
+    }
+
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+    }
+
+    #modal .modal-header {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+    }
+
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0%;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        grid-gap: 10px;
+    }
+/*----------------------------------------------------
+    Styling the tiles
+*/
+    .container > .tile {
+        width: 70px;
+        height: 70px;
+        border-color: black;
+        border-style: solid;
+        border-width: thin;
+        text-align: center;
+        font-weight: bold;
+        display: flex;
+        font-size: 48px;
+        justify-content: center;
+        align-items: center;
+    }
+    .close {
+        background-color: yellow;
+        transform: rotateX(-360deg);
+        transition: 0.8s;
+    }
+
+    .wrong {
+        background-color: rgb(184, 184, 184);
+        transform: rotateX(-360deg);
+        transition: 0.8s;
+    }
+    
+    .correct {
+        background-color: green;
+        transform: rotateX(-360deg);
+        transition: 0.8s;
+    }
+    /*--------------------------------------------------
+    Styling Keyboard
+    */
+
+    .keyboard-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        margin: 0px 10px;
+    }
+
+    .keyboard-container > .keyboard-wrap {
+        max-width: 1008px;
+        width: 100%;
+        background-color: #e7e7e7;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    /* .keyboard-container > .keyboard-wrap > .row-1 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+    }
+    .keyboard-container > .keyboard-wrap > .row-2 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+    }
+    .keyboard-container > .keyboard-wrap > .row-3 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    } */
+
+    .keys {
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 4px;
+        width: 90px;
+    }
+
+    .keys-close {
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 4px;
+        width: 90px;
+        background-color: yellow;
+    }
+
+    .keys-wrong {
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 4px;
+        width: 90px;
+        background-color: rgb(184, 184, 184);
+    }
+
+    .keys-correct {
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 4px;
+        width: 90px;
+        background-color: green;
+    }
+</style>
+<body>
+
+    <div id="modal">
+        <span>00:00</span>
+        <div class="modal-header">
+            <h2></h2>
+            <button id="close-modal">&times;</button>
+        </div>
+        <p></p>
+    </div>
+    <div id="overlay"></div>
+
+    <div class="header">
+        <h3>Wordle</h3>
+    </div>
+
+    <div class="container">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+    </div>
+
+        <div class="keyboard-container">
+            <div class="keyboard-wrap">
+                <div class="row">
+                    <div class="keys" data-index-number="Q">Q</div>
+                    <div class="keys" data-index-number="W">W</div>
+                    <div class="keys" data-index-number="E">E</div>
+                    <div class="keys" data-index-number="R">R</div>
+                    <div class="keys" data-index-number="T">T</div>
+                    <div class="keys" data-index-number="Y">Y</div>
+                    <div class="keys" data-index-number="U">U</div>
+                    <div class="keys" data-index-number="I">I</div>
+                    <div class="keys" data-index-number="O">O</div>
+                    <div class="keys" data-index-number="P">P</div>
+                </div>
+                <div class="row">
+                    <div class="keys" data-index-number="A">A</div>
+                    <div class="keys" data-index-number="S">S</div>
+                    <div class="keys" data-index-number="D">D</div>
+                    <div class="keys" data-index-number="F">F</div>
+                    <div class="keys" data-index-number="G">G</div>
+                    <div class="keys" data-index-number="H">H</div>
+                    <div class="keys" data-index-number="J">J</div>
+                    <div class="keys" data-index-number="K">K</div>
+                    <div class="keys" data-index-number="L">L</div>
+                </div>
+                <div class="row">
+                    <div class="keys" data-index-number="Z">Z</div>
+                    <div class="keys" data-index-number="X">X</div>
+                    <div class="keys" data-index-number="C">C</div>
+                    <div class="keys" data-index-number="V">V</div>
+                    <div class="keys" data-index-number="B">B</div>
+                    <div class="keys" data-index-number="N">N</div>
+                    <div class="keys" data-index-number="M">M</div>
+                </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
