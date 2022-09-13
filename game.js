@@ -418,7 +418,6 @@ function checkTiles(inputArr) {
 
   if (currentGuess == SOLUTION) playAgain();
   guessCount++;
-  // console.log(`guessCount: ${guessCount}`);
   currentGuess = "";
 
   if (guessCount == 6) gameOver();
