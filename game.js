@@ -349,7 +349,12 @@ const keyboardKeys = document.querySelectorAll(".keys");
 let modal = document.getElementById("modal");
 let overlay = document.getElementById("overlay");
 let closeModal = document.getElementById("close-modal");
-let timer = document.getElementById("modal").getElementsByTagName("span")[0];
+let header = document
+  .querySelector("#modal")
+  .querySelector(".modal-header")
+  .getElementsByTagName("h2")[0];
+let text = document.querySelector("#modal").getElementsByTagName("p")[0];
+// let timer = document.getElementById("modal").getElementsByTagName("span")[0];
 
 console.log(`Solution: ${SOLUTION}`);
 let guess = [];
@@ -364,22 +369,22 @@ let guessIndex = {
   4: [20, 21, 22, 23, 24],
   5: [25, 26, 27, 28, 29],
 };
-let seconds = (minutes = 0),
-  myTimer;
-startTimer();
+// let seconds = (minutes = 0),
+//   myTimer;
+// startTimer();
 
-function startTimer() {
-  myTimer = setInterval(() => {
-    seconds++;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+// function startTimer() {
+//   myTimer = setInterval(() => {
+//     seconds++;
+//     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    if (seconds == 60) {
-      seconds = "0" + (seconds % 60);
-      minutes++;
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-    }
-  }, 1000);
-}
+//     if (seconds == 60) {
+//       seconds = "0" + (seconds % 60);
+//       minutes++;
+//       minutes = minutes < 10 ? "0" + minutes : minutes;
+//     }
+//   }, 1000);
+// }
 
 function checkTiles(inputArr) {
   while (inputArr.length > 0 && guessCount <= 6) {
@@ -447,30 +452,22 @@ const handleTyping = (event) => {
 };
 
 function gameOver() {
-  clearInterval(myTimer);
-  setInterval(() => {
-    modal.style.display = "block";
-    overlay.style.opacity = "2";
-    clearInterval();
-    header.innerText = "Game Over :(";
-    let text = document.querySelector("#modal").getElementsByTagName("p")[0];
-    text.innerText = "Click on 'X' to play again.";
-  }, 450);
+  // clearInterval(myTimer);
+  //timer.innerText = `${minutes} : ${seconds} mins`;
+  modal.style.display = "block";
+  overlay.style.opacity = "2";
+  header.innerText = `Game Over... Answer was ${SOLUTION} :(`;
+  text.innerText = "Click on 'X' to play again.";
   resetBoard();
 }
 
 function playAgain() {
+  // clearInterval(myTimer);
+  // timer.innerText = `${minutes} : ${seconds} mins`;
   modal.style.display = "block";
   overlay.style.opacity = "2";
-  let header = document
-    .querySelector("#modal")
-    .querySelector(".modal-header")
-    .getElementsByTagName("h2")[0];
-  timer.innerText = `${minutes} : ${seconds} mins`;
-  clearInterval(myTimer);
   header.innerText = `Congratulation! ${SOLUTION} was correct :)`;
-  let text = document.querySelector("#modal").getElementsByTagName("p")[0];
-  text.innerText = "Click on 'X' to play again.";
+  text.innerText = "Click on &times; to play again.";
   resetBoard();
 }
 
@@ -490,7 +487,7 @@ function resetBoard() {
     keyboardKeys.forEach((key) => {
       key.classList = "keys";
     });
-    startTimer();
+    // startTimer();
   });
   SOLUTION = WORDS[Math.floor(Math.random() * WORDS.length)];
   console.log(`New Solution : ${SOLUTION}`);
