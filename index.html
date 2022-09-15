@@ -13,6 +13,9 @@
         justify-content: center;
         align-items: center;
     }
+    body {
+        background-color: #121213;
+    }
     #modal {
         width: 500px;
         height: 225px;
@@ -75,30 +78,31 @@
     .container > .tile {
         width: 70px;
         height: 70px;
-        border-color: black;
-        border-style: solid;
-        border-width: thin;
+        border-color: gray;
+        color:#121213;
         text-align: center;
         font-weight: bold;
         display: flex;
-        font-size: 48px;
+        font-size: 36px;
         justify-content: center;
         align-items: center;
+        color: whitesmoke;
+        border: 2px solid #565758;
     }
     .close {
-        background-color: yellow;
+        background-color: #b59f3b;
         transform: rotateX(-360deg);
         transition: 0.8s;
     }
 
     .wrong {
-        background-color: rgb(184, 184, 184);
+        background-color: #3a3a3c;
         transform: rotateX(-360deg);
         transition: 0.8s;
     }
     
     .correct {
-        background-color: green;
+        background-color: #538d4e;
         transform: rotateX(-360deg);
         transition: 0.8s;
     }
@@ -122,7 +126,7 @@
     .keyboard-container > .keyboard-wrap {
         max-width: 1008px;
         width: 100%;
-        background-color: #e7e7e7;
+        background-color: #121213;
         overflow: hidden;
         position: relative;
     }
@@ -134,54 +138,67 @@
     .keys {
         width: 60px;
         height: 60px;
-        background-color: #fff;
+        background-color: #939598;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 4px;
         width: 90px;
+        font-weight: bold;
+        font-family: inherit;
+        color: whitesmoke;
+        border-radius: 4px;
     }
 
     .keys-close {
         width: 60px;
         height: 60px;
-        background-color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 4px;
         width: 90px;
-        background-color: yellow;
+        background-color: #b59f3b;
+        color: whitesmoke;
+        border-radius: 4px;
+        font-weight: bold;
+        font-family: inherit;
     }
 
     .keys-wrong {
         width: 60px;
         height: 60px;
-        background-color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 4px;
         width: 90px;
-        background-color: rgb(184, 184, 184);
+        background-color: #3a3a3c;
+        color: whitesmoke;
+        border-radius: 4px;
+        font-weight: bold;
+        font-family: inherit;
     }
 
     .keys-correct {
         width: 60px;
         height: 60px;
-        background-color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 4px;
         width: 90px;
-        background-color: green;
+        background-color: #538d4e;
+        color: whitesmoke;
+        border-radius: 4px;
+        font-weight: bold;
+        font-family: inherit;
     }
 </style>
 <body>
 
     <div id="modal">
-        <span>00:00</span>
+        <span></span>
         <div class="modal-header">
             <h2></h2>
             <button id="close-modal">&times;</button>
@@ -191,7 +208,7 @@
     <div id="overlay"></div>
 
     <div class="header">
-        <h3>Wordle</h3>
+        <h3 style="color: whitesmoke;">Wordle</h3>
     </div>
 
     <div class="container">
