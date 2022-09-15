@@ -390,7 +390,7 @@ function checkTiles(inputArr) {
   while (inputArr.length > 0 && guessCount <= 6) {
     currentGuess += inputArr.shift();
   }
-
+  
   let i, start;
   let end = guessIndex[`${guessCount}`][currentGuess.length - 1];
   for (
@@ -412,13 +412,12 @@ function checkTiles(inputArr) {
       tileClass += " wrong";
       keyClass += "wrong";
     }
-    let letter = tiles[start].innerText;
+    tiles[start].setAttribute("class", tileClass);
     keyboardKeys.forEach((key) => {
-      if (key.dataset.indexNumber == letter) {
+      if (key.dataset.indexNumber == char) {
         key.setAttribute("class", keyClass);
       }
     });
-    tiles[start].setAttribute("class", tileClass);
   }
 
   if (currentGuess == SOLUTION) {
