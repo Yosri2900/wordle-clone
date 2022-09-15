@@ -466,7 +466,7 @@ function playAgain() {
   modal.style.display = "block";
   overlay.style.opacity = "2";
   header.innerText = `Congratulation! ${SOLUTION} was correct :)`;
-  text.innerText = "Click on &times; to play again.";
+  text.innerText = "Click on 'X' to play again.";
   resetBoard();
 }
 
